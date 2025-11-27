@@ -211,6 +211,60 @@ require("lazy").setup({
     end,
   },
 
+
+    -- Jump anywhere on screen
+{
+  "ggandor/leap.nvim",
+  config = function()
+    require("leap").add_default_mappings()
+  end,
+},
+
+-- Git commands
+{
+  "tpope/vim-fugitive",
+  cmd = { "Git", "G" },
+},
+
+-- Better diff UI
+{
+  "sindrets/diffview.nvim",
+  cmd = { "DiffviewOpen", "DiffviewFileHistory" },
+  config = function()
+    require("diffview").setup()
+  end,
+},
+
+-- Highlight and search TODOs
+{
+  "folke/todo-comments.nvim",
+  dependencies = { "nvim-lua/plenary.nvim" },
+  config = function()
+    require("todo-comments").setup()
+  end,
+},
+
+-- Quick buffer switching
+{
+  "leath-dub/snipe.nvim",
+  keys = {
+    { "gb", function() require("snipe").open_buffer_menu() end, desc = "Snipe buffer menu" },
+  },
+  config = function()
+    require("snipe").setup()
+  end,
+},
+
+-- Better quickfix/diagnostics UI
+{
+  "folke/trouble.nvim",
+  cmd = { "Trouble", "TroubleToggle" },
+  config = function()
+    require("trouble").setup()
+  end,
+},
+
+
   -- Smooth scrolling
   {
     "karb94/neoscroll.nvim",
@@ -288,3 +342,12 @@ keymap("n", "<Esc>", ":noh<CR>", { desc = "Clear search highlight" })
 -- Save and quit shortcuts
 keymap("n", "<leader>w", ":w<CR>", { desc = "Save file" })
 keymap("n", "<leader>q", ":q<CR>", { desc = "Quit" })
+
+ 
+vim.keymap.set("n", "<leader>gg", ":Git<CR>", { desc = "Git status" })
+vim.keymap.set("n", "<leader>gd", ":DiffviewOpen<CR>", { desc = "Diff view" })
+vim.keymap.set("n", "<leader>gh", ":DiffviewFileHistory %<CR>", { desc = "File history" })
+vim.keymap.set("n", "<leader>gq", ":DiffviewClose<CR>", { desc = "Close diff" })
+vim.keymap.set("n", "<leader>tt", ":TodoTelescope<CR>", { desc = "Search TODOs" })
+vim.keymap.set("n", "<leader>tr", ":Trouble<CR>", { desc = "Toggle Trouble" })
+
