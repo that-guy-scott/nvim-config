@@ -40,19 +40,6 @@ vim.opt.cursorline = true       -- Highlight current line
 
 -- Plugin specifications
 require("lazy").setup({
-  -- VSCode color scheme
-  {
-    "Mofiqul/vscode.nvim",
-    priority = 1000,
-    config = function()
-      require('vscode').setup({
-        transparent = false,
-        italic_comments = true,
-        disable_nvimtree_bg = true,
-      })
-      vim.cmd.colorscheme('vscode')
-    end,
-  },
 
   -- File tree
   {
@@ -118,7 +105,7 @@ require("lazy").setup({
     config = function()
       require('lualine').setup({
         options = {
-          theme = 'vscode',
+          theme = 'auto',
           component_separators = '|',
           section_separators = '',
         },
@@ -301,6 +288,8 @@ require("lazy").setup({
     end,
   },
 })
+
+vim.cmd.colorscheme("cai")
 
 -- Key mappings
 local keymap = vim.keymap.set
